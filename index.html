@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <style>
+            .dropbtn {
+                background-color: #3498DB;
+                color: white;
+                padding: 16px;
+                font-size: 16px;
+                border: none;
+                cursor: pointer;
+            }
+
+            .dropbtn:hover, .dropbtn:focus {
+                background-color: #2980B9;
+            }
+
+            .dropdown {
+                position: relative;
+                display: inline-block;
+            }
+
+            .dropdown-content {
+                display: none;
+                position: absolute;
+                background-color: #f1f1f1;
+                min-width: 160px;
+                overflow: auto;
+                box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+                z-index: 1;
+            }
+
+            .dropdown-content p {
+                color: black;
+                padding: 12px 16px;
+                text-decoration: none;
+                display: block;
+            }
+
+            .dropdown p:hover {background-color: #ddd;}
+
+            .show {display: block;}
+        </style>
+    </head>
+    <body>
+        <h2>Pair-Up Game</h2>
+        <p>Select number of grids and start a game!</p>
+        <div class="dropdown">
+            <button onclick="onDropdownBtnClicked()" class="dropbtn">2 x 2</button>
+            <div id="dropdown-items" class="dropdown-content">
+                <p>2 x 2</p>
+                <p>4 x 4</p>
+                <p>6 x 6</p>
+                <p>8 x 8</p>
+                <p>10 x 10</p>
+            </div>
+        </div>
+
+        <br>
+
+        <a href="game_page.html">  <!-- target="_blank -->
+            <button type="button">Start Game</button>
+        </a>
+
+        <script>
+            // https://www.w3schools.com/howto/tryit.asp?filename=tryhow_css_js_dropdown
+            // https://www.w3schools.com/howto/howto_js_cascading_dropdown.asp
+            // https://www.w3schools.com/howto/tryit.asp?filename=tryhow_js_cascading_dropdown
+            // 20240213
+
+            function onDropdownBtnClicked() {
+                document.getElementById("dropdown-items").classList.toggle("show");
+                console.log("onDropdownBtnClicked()")
+            }
+            
+            window.onclick = function(event) {
+                if (!event.target.matches(".dropbtn")) {
+                    console.log("!event.target.matches('.dropbtn')")
+                    var dropdown_items = document.getElementsByClassName("dropdown-content");
+                    for (i=0; i<dropdown_items.length; i++) {
+                        var openDropdown = dropdown_items[i];
+                        if (openDropdown.classList.contains("show")) {
+                            openDropdown.classList.remove("show");
+                        }
+                    }
+                }
+            }
+            
+        </script>
+    </body>
+</html>
