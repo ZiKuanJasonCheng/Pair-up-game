@@ -1,0 +1,28 @@
+body {
+    background-color: rgb(202, 219, 224);
+}
+h1 {
+    color: red;
+    text-align: center;
+}
+p {
+    font-family: verdana;
+    font-size: 20px;
+}
+table.fixed {
+    table-layout: fixed;
+    overflow: hidden;
+    /*border-collapse: collapse;*/
+}
+td.fixed { 
+    width: 150px;
+    overflow: hidden;
+}
+tr.fixed { 
+    height: 150px;
+    overflow: hidden;                
+}
+img {
+    width: 140px;
+    height: 140px;
+}
