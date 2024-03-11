@@ -30,6 +30,7 @@ function Game() {
     let centisecs = 0
     let table_script = ""
     let arr_items = []
+    // https://stackoverflow.com/questions/38093760/how-to-access-a-dom-element-in-react-what-is-the-equilvalent-of-document-getele
     let showSecondsRef = createRef()
     let showCentisecsRef = createRef()
 
@@ -136,6 +137,10 @@ function Game() {
     const start_timer = () => {
         // https://codepen.io/cathydutton/pen/xxpOOw
         centisecs++;
+        if (showSecondsRef.current == null) {
+            //console.log("showSecondsRef.current is null!!")
+            return
+        }
         if (centisecs <= 9) {
             document.getElementById("centisecs").innerHTML = "0" + centisecs;
         }
@@ -161,16 +166,44 @@ function Game() {
     }
 
     const onload_tasks = () => {
+        console.log("onload_tasks()")
         shuffle_img();
         clearInterval(interval);
         interval = setInterval(start_timer, 10);
         //start_timer();
     }
 
-    // useEffect(() => {
+    // https://stackoverflow.com/questions/64965273/react-interval-not-stopping-after-leaving
+    //const myRef = useRef(null);
+    useEffect(() => {
+        // myRef.current = setInterval(() => {
+        //     console.log("I'm in useEffect()");
+        //     if (showSecondsRef.current == null) {
+        //         console.log("showSecondsRef.current is null!!")
+        //     } 
+        // }, 3000);
+        //return stop_timer()
+        return () => {
+            console.log("I'm in return of useEffect()");
+            //clearInterval(myRef.current);
+        }
+    }, [])
 
-    //     return stop_timer()
-    // }, [])
+    useEffect(() => {
+        const handleUnload = () => {
+            console.log("handleUnload is triggered!")
+            stop_timer()
+            // event.preventDefault();
+            // event.returnValue = '';
+        };
+        window.addEventListener('unload', handleUnload);
+        console.log("I'm in the second useEffect()")
+
+        return () => {
+            console.log("I'm in return of the second useEffect()");
+            window.removeEventListener('unload', handleUnload);
+        }
+    }, [])
 
     for (let i=0; i<num_grids; i++) {
         arr_items.push(i);
@@ -200,7 +233,6 @@ function Game() {
                     ]
                 })}
                 </table>
-
                 <p><span id="seconds" ref={showSecondsRef}>00</span>:<span id="centisecs" ref={showCentisecsRef}>00</span></p>
                 <p id="msg"></p>
                 <button type="button" onClick={restart_game}>Restart Game</button>
