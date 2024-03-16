@@ -18,9 +18,7 @@ function App () {
       <header className="App-header">
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/game" element={<Game num_grids="2"/>} />
-          <Route path="/game2" element={<Game2 />} />
-          
+          <Route path="/game" element={<Game />} />
         </Routes>
       </header>
     </div>
