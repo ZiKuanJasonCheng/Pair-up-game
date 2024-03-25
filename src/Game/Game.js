@@ -237,6 +237,7 @@ function Game() {
                 <p id="msg"></p>
                 <button type="button" onClick={restart_game}>Restart Game</button>
                 {/* <button type="button" onClick={history.back}>Go Back</button> */}
+                <p></p>
             </header>
         </div>
     );

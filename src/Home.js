@@ -34,7 +34,7 @@ function Home() {
   }
 
   // https://www.w3schools.com/howto/tryit.asp?filename=tryhow_js_cascading_dropdown
-  const arr_grids = [4, 6, 8]
+  const arr_grids = [4]  //[6, 8]
   let num_grids = 2;
   let gridsSelRef = createRef();
 
